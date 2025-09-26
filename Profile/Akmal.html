@@ -6,65 +6,140 @@
     <title>Profile - Mochammad Akmal Anfal</title>
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
     <style>
-        /* Styles khusus untuk halaman profile */
+        :root {
+            --navy-blue: #001f3f;
+            --navy-blue-light: #003366;
+            --coral: #FF7F50;
+            --coral-dark: #e67347;
+            --coral-light: #ff9c7a;
+            --gray-light: #f5f5f5;
+            --gray-medium: #d0d0d0;
+            --gray-dark: #333333;
+            --white: #ffffff;
+        }
+        
         .profile-page {
             min-height: 100vh;
-            background: #f6f8fa;
+            background: linear-gradient(135deg, var(--gray-light) 0%, #e8e8e8 100%);
         }
         
         .profile-header {
-            background-color: #1e4beb;
-            color: white;
+            background: linear-gradient(135deg, var(--navy-blue) 0%, var(--navy-blue-light) 100%);
+            color: var(--white);
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             position: relative;
+            box-shadow: 0 4px 15px rgba(0, 31, 63, 0.4);
         }
         
-        .back-button {
+        .profile-header::before {
+            content: '';
             position: absolute;
-            left: 20px;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy-blue), var(--coral), var(--navy-blue));
+        }
+        
+        /* Tombol X untuk kembali ke halaman utama */
+        .close-button {
+            position: absolute;
+            left: 25px;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            font-weight: 300;
+            font-family: Arial, sans-serif;
+            text-decoration: none;
+            z-index: 10;
         }
         
-        .back-button:hover {
-            background: rgba(255,255,255,0.3);
+        .close-button:hover {
+            background: var(--coral);
+            border-color: var(--coral-light);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 4px 15px rgba(255, 127, 80, 0.4);
+        }
+        
+        .close-button:active {
+            transform: translateY(-50%) scale(0.95);
         }
         
         .profile-container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 40px;
+            max-width: 1000px;
+            margin: 50px auto;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 31, 63, 0.15);
+            padding: 50px;
+            border: 1px solid var(--gray-medium);
+            position: relative;
+        }
+        
+        .profile-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--navy-blue), var(--coral));
+            border-radius: 20px 20px 0 0;
         }
         
         .profile-main {
             display: flex;
             align-items: flex-start;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 40px;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--gray-light);
         }
         
         .profile-avatar {
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #1e4beb;
+            border: 6px solid var(--navy-blue);
+            box-shadow: 0 8px 25px rgba(0, 31, 63, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .profile-avatar::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--coral);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .profile-avatar:hover {
+            transform: scale(1.05);
+            border-color: var(--coral);
+            box-shadow: 0 12px 35px rgba(255, 127, 80, 0.3);
+        }
+        
+        .profile-avatar:hover::after {
+            opacity: 1;
         }
         
         .profile-info {
@@ -72,39 +147,98 @@
         }
         
         .profile-info h1 {
-            margin: 0 0 10px 0;
-            color: #222;
-            font-size: 2.2rem;
+            margin: 0 0 15px 0;
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--navy-blue), var(--coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .profile-info .title {
-            color: #1e4beb;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: bold;
+            color: var(--coral);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            padding: 10px 20px;
+            background-color: var(--gray-light);
+            border-radius: 10px;
+            display: inline-block;
+            border-left: 5px solid var(--navy-blue);
         }
         
         .contact-info {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
+            background: linear-gradient(135deg, var(--gray-light) 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            color: var(--gray-dark);
+            border: 2px solid var(--gray-medium);
+            border-left: 5px solid var(--coral);
+        }
+        
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info strong {
+            color: var(--navy-blue);
         }
         
         .profile-details {
-            margin-top: 30px;
+            margin-top: 40px;
         }
         
         .detail-section {
-            margin-bottom: 25px;
+            margin-bottom: 35px;
+            padding: 30px;
+            background: var(--gray-light);
+            border-radius: 15px;
+            border-left: 6px solid var(--navy-blue);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .detail-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 127, 80, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .detail-section:hover {
+            background: #f0f0f0;
+            transform: translateX(10px);
+            border-left-color: var(--coral);
+        }
+        
+        .detail-section:hover::before {
+            left: 100%;
         }
         
         .detail-section h3 {
-            color: #1e4beb;
-            border-bottom: 2px solid #e1e4e8;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+            color: var(--navy-blue);
+            border-bottom: 3px solid var(--coral);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .detail-section h3::before {
+            content: '▸';
+            color: var(--coral);
+            font-size: 1.8rem;
         }
         
         .detail-section ul {
@@ -113,70 +247,243 @@
         }
         
         .detail-section li {
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 15px 0;
+            border-bottom: 2px solid #f0f0f0;
+            color: var(--gray-dark);
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .detail-section li:hover {
+            background: var(--white);
+            padding-left: 30px;
+            border-bottom-color: var(--coral-light);
+        }
+        
+        .detail-section li:before {
+            content: '•';
+            color: var(--coral);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.5rem;
         }
         
         .detail-section li:last-child {
             border-bottom: none;
         }
         
+        .detail-section p {
+            color: var(--gray-dark);
+            line-height: 1.7;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+        
         .navigation-links {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #e1e4e8;
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 3px solid var(--gray-light);
         }
         
         .nav-button {
-            display: inline-block;
-            padding: 12px 25px;
-            margin: 0 10px;
-            background: #1e4beb;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 35px;
+            margin: 0 15px;
+            background: linear-gradient(135deg, var(--navy-blue) 0%, var(--navy-blue-light) 100%);
+            color: var(--white);
             text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s;
-            font-weight: bold;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            box-shadow: 0 6px 20px rgba(0, 31, 63, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
         }
         
         .nav-button:hover {
-            background: #0d3cc8;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(30, 75, 235, 0.3);
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 127, 80, 0.4);
+        }
+        
+        .nav-button:hover::before {
+            left: 100%;
+        }
+        
+        .skill-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .skill-badge {
+            background: linear-gradient(135deg, var(--navy-blue), var(--coral));
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 127, 80, 0.3);
+        }
+
+        /* Floating Action Button untuk close */
+        .floating-close {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+            border: none;
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(255, 127, 80, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            transform: scale(0);
+            text-decoration: none;
+        }
+        
+        .floating-close.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .floating-close:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 127, 80, 0.6);
         }
         
         @media (max-width: 768px) {
             .profile-main {
                 flex-direction: column;
                 text-align: center;
-                gap: 20px;
+                gap: 30px;
             }
             
             .profile-avatar {
-                width: 120px;
-                height: 120px;
+                width: 180px;
+                height: 180px;
+                margin: 0 auto;
             }
             
             .profile-container {
-                margin: 20px;
+                margin: 30px 20px;
+                padding: 35px;
+            }
+            
+            .close-button {
+                left: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 24px;
+            }
+            
+            .profile-info h1 {
+                font-size: 2.2rem;
+            }
+            
+            .detail-section {
+                padding: 25px;
+                margin-bottom: 25px;
+            }
+            
+            .nav-button {
+                display: flex;
+                justify-content: center;
+                margin: 15px auto;
+                width: 90%;
+                max-width: 280px;
+            }
+            
+            .floating-close {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-container {
+                margin: 20px 15px;
+                padding: 25px;
+            }
+            
+            .profile-header {
                 padding: 20px;
             }
             
-            .back-button {
+            .profile-header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .profile-info h1 {
+                font-size: 1.8rem;
+            }
+            
+            .close-button {
                 left: 10px;
-                width: 35px;
-                height: 35px;
+                width: 40px;
+                height: 40px;
                 font-size: 20px;
+            }
+            
+            .detail-section {
+                padding: 20px;
+            }
+            
+            .floating-close {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
             }
         }
     </style>
 </head>
 <body class="profile-page">
     <header class="profile-header">
-        <button class="back-button" onclick="goBack()">×</button>
+        <!-- Tombol X untuk kembali ke halaman utama -->
+        <a href="../index.html" class="close-button" title="Kembali ke Halaman Utama">×</a>
         <h1>Detail Profile Mahasiswa</h1>
     </header>
+    
+    <!-- Floating Close Button -->
+    <a href="../index.html" class="floating-close" title="Kembali ke Beranda">×</a>
     
     <div class="profile-container">
         <div class="profile-main">
@@ -185,9 +492,10 @@
                 <h1>Mochammad Akmal Anfal</h1>
                 <div class="title">Mahasiswa - 42430041</div>
                 <div class="contact-info">
-                    <p><strong>Email:</strong> akmalanfal81@gmail.com</p>
-                    <p><strong>Universitas:</strong> Universitas Pendidikan Nasional Denpasar</p>
-                    <p><strong>Program Studi:</strong> Pemrograman Web</p>
+                    <p><strong>📧 Email:</strong> akmalanfal81@gmail.com</p>
+                    <p><strong>🏫 Universitas:</strong> Universitas Pendidikan Nasional Denpasar</p>
+                    <p><strong>🎓 Program Studi:</strong> Pemrograman Web</p>
+                    <p><strong>📍 Lokasi:</strong> Denpasar, Bali</p>
                 </div>
             </div>
         </div>
@@ -195,43 +503,42 @@
         <div class="profile-details">
             <div class="detail-section">
                 <h3>Tentang Saya</h3>
-                <p>Seorang mahasiswa yang antusias dalam mempelajari pengembangan web dan teknologi terkini. Memiliki ketertarikan dalam membuat aplikasi web yang responsive dan user-friendly.</p>
+                <p>Seorang mahasiswa yang antusias dalam mempelajari pengembangan web dan teknologi terkini. Memiliki ketertarikan dalam membuat aplikasi web yang responsive dan user-friendly. Selalu bersemangat untuk mempelajari teknologi baru dan berkontribusi dalam proyek-proyek yang bermakna.</p>
             </div>
             
             <div class="detail-section">
                 <h3>Pendidikan</h3>
                 <ul>
-                    <li><strong>Universitas Pendidikan Nasional Denpasar</strong> - Teknik Informatika (2023 - Sekarang)</li>
+                    <li><strong>Universitas Pendidikan Nasional Denpasar</strong> - Teknik Informatika (2024 - Sekarang)</li>
+                    <li><strong>IPK:</strong> 3.53/4.00</li>
+                    <li><strong>Fokus Studi:</strong> Teknik dan Informatika</li>
                 </ul>
             </div>
             
             <div class="detail-section">
                 <h3>Minat Penelitian</h3>
                 <ul>
-                    <li>Web Development</li>
+                    <li>Web Development Modern</li>
                     <li>Mobile Application Development</li>
-                    <li>User Interface/User Experience Design</li>
-                    <li>Cloud Computing</li>
+                    <li>Cloud Computing & DevOps</li>
+                    <li>Artificial Intelligence dalam Web</li>
                 </ul>
             </div>
             
             <div class="detail-section">
-                <h3>Publikasi Terpilih</h3>
-                <ul>
-                    <li>Akmal Anfal, "Web Development for Beginners", Journal of Web Studies, 2023</li>
-                    <li>Akmal Anfal, "Responsive Design Principles", International Conference on Web Technologies, 2024</li>
-                </ul>
+                <h3>Skills & Teknologi</h3>
+                <div class="skill-badges">
+                    <span class="skill-badge">HTML5</span>
+                    <span class="skill-badge">CSS3</span>
+                    <span class="skill-badge">UI/UX Design</span>
+                    <span class="skill-badge">Git & GitHub</span>
+                    <span class="skill-badge">Responsive Design</span>
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">MySQL</span>
+                    <span class="skill-badge">Design Canva</span>
+                </div>
             </div>
             
-            <div class="detail-section">
-                <h3>Skills</h3>
-                <ul>
-                    <li>HTML, CSS, JavaScript</li>
-                    <li>React.js, Node.js</li>
-                    <li>UI/UX Design</li>
-                    <li>Git & GitHub</li>
-                </ul>
-            </div>
         </div>
         
         <div class="navigation-links">
@@ -239,31 +546,5 @@
             <a href="mahasiswa2.html" class="nav-button">👉 Lihat Profil Lain</a>
         </div>
     </div>
-
-    <script>
-        function goBack() {
-            // Cek jika pengguna datang dari halaman dalam situs yang sama
-            if (document.referrer.includes(window.location.hostname)) {
-                window.history.back();
-            } else {
-                window.location.href = '../index.html';
-            }
-        }
-        
-        // Navigasi dengan tombol Escape
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                goBack();
-            }
-        });
-        
-        // Optimasi loading gambar
-        window.addEventListener('load', function() {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                img.style.opacity = '1';
-            });
-        });
-    </script>
 </body>
 </html>
